@@ -270,7 +270,12 @@ maven编译安装zheng/pom.xml文件即可
 
 - 新建zheng数据库，导入project-datamodel文件夹下的zheng.sql
 
-- 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值
+- 修改各dao模块和rpc-service模块的redis.properties、jdbc.properties、generator.properties数据库连接等配置信息，其中master.redis.password、master.jdbc.password、slave.jdbc.password、generator.jdbc.password密码值使用了AES加密，请使用com.zheng.common.util.AESUtil工具类修改这些值，在此类的main方法的key数组中加入相应的值，右键Debug运行。
+  项目里默认的是空字符串加密后密文：FNFl9F2O2Skb8yoKM0jhHA==
+  项目里默认的"123456"字符串加密后密文：rWd3Hb+AzNg3IXF1b5vD+g==
+  如果你的MySQL数据库用户名是root，密码是123456，则不需要修改。
+  redis.properties、jdbc.properties、generator.properties的配置信息中，由于修改了host，dbserver、rdserver已经指向到了本地（本机演示不需要修改）。以上文件如果想修改，最好在同级目录文件夹profiles中的dev.properties（开发配置）、prod.properties（生产配置）、test.properties（测试配置）中设置。
+
 
 - 启动Zookeeper、Redis、ActiveMQ、Nginx（配置文件参考project-tools/nginx下的*.conf文件）
 
